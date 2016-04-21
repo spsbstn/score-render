@@ -1,0 +1,46 @@
+g(ng-class = '{"active": isActive, "unclear": isUnclear}'
+  un-click = 'setNoteAsInactive()'
+  ng-click = 'setNoteAsActive()'
+  is-active = 'isActive')
+  // note is a rest
+  g(ng-if = 'note.rest')
+    g.note(ng-attr-transform = 'translate({{getXOffset(index)}}, {{spacing * 1.5}})')
+      use(ng-attr-transform = 'scale({{(4.5 * spacing) / 30}}, {{(6.5 * spacing) / 50}})'
+        viewBox="0 0 30 50"
+        xlink:href = '{{ "assets/score_svgs/" + note.type + "_rest.svg#note" | svgHref}}')
+    rect.spreading-rect(
+      ng-attr-transform = 'translate({{getXOffset(index)-20}}, {{-2 * spacing}})'
+      ng-attr-height = '{{12 * spacing}}'
+      ng-attr-width = '{{40 + 1.5 * spacing}}'
+      fill = 'rgba(0,0,0,0)')
+  // note is a normal note
+  g(ng-if = '!note.rest && note.type != "input"')
+    g.note(
+      ng-attr-transform = 'translate({{getXOffset(index) - 0.2 * spacing}}, {{getYOffset(note.pitch.step, note.pitch.octave, spacing)}})')
+        use(ng-attr-transform = 'scale({{(4.5 * spacing) / 31}},{{(4.5 * spacing) / 31.5}})'
+          viewBox = '0 0 30 30.5'
+          xlink:href = '{{ "assets/score_svgs/" + note.type + "_note.svg#note" | svgHref}}')
+    rect.spreading-rect(
+      ng-attr-transform = 'translate({{getXOffset(index)-20}}, {{-2 * spacing}})'
+      ng-attr-height = '{{12 * spacing}}'
+      ng-attr-width = '{{40 + 1.5 * spacing}}'
+      fill = 'rgba(0,0,0,0)'
+      drag = 'onNoteDragged($event)'
+      drag-end = 'onDragEnd()')
+    // extra staff
+    g(extra-staff = '{{note}}'
+      ng-attr-transform = 'translate({{getXOffset(index)}},0)')
+
+    // show dot if it is a dotted note
+    circle.dot(
+      ng-if = 'note.dot'
+      ng-attr-cx = '{{getXOffset(index) + 2.5 * spacing}}'
+      ng-attr-cy = '{{getYOffset(note.pitch.step, note.pitch.octave, spacing) + 4 * spacing - spacing / 5}}'
+      ng-attr-r = '{{spacing / 5}}')
+
+// note-input
+g(
+  ng-if = 'note.type === "input"'
+  note-input = ''
+  ng-attr-transform = 'translate({{getXOffset(index)}}, {{-2 * spacing}})'
+)

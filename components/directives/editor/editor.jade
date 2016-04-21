@@ -1,0 +1,10 @@
+.editor
+  .scroll-wrapper
+    .measure-card(ng-repeat = 'measure in measures')
+      h1(translate) Measure {{$index + 1}} of {{measures.length}}
+        ng-md-icon.play-icon(icon = '{{playPauseIcon}}' ng-click = 'play($index)')
+      .image-wrapper(data-ng-magnify image-src = '{{measure.image}}')
+      svg.measure-input-line
+        g(score-line = '')
+  button.next-button(ng-click='trans.prev()' translate) Back
+  button.next-button(ng-click='trans.next()' translate) Next

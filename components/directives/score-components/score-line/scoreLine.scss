@@ -1,0 +1,32 @@
+.score-line {
+  height: 100%;
+  padding: 0;
+
+  .html-block {
+    width: 100%;
+
+    i.icon {
+      @include type-setting(1);
+      margin-left: vertical-margin(1);
+
+      &:hover {
+        cursor: pointer;
+        color: $primary-color;
+      }
+    }
+
+    h2 {
+      @include type-setting(1);
+      color: $primary-color;
+      margin: vertical-margin(1) 0;
+      text-transform: uppercase;
+      display: inline;
+    }
+  }
+
+}
+
+.line-image {
+  border: 1px solid $border-color;
+  border-radius: $global-radius;
+}

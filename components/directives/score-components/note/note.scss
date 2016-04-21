@@ -1,0 +1,19 @@
+.spreading-rect {
+  fill: rgba($black, 0);
+
+  &:hover {
+    cursor: pointer;
+    fill: rgba($light-grey, .2);
+  }
+}
+
+.active {
+  .note,
+  circle {
+    fill: $primary-color !important;
+  }
+}
+
+.unclear {
+  fill: $error-color !important;
+}

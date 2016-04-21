@@ -1,0 +1,124 @@
+.tool-bar {
+  @include span(12 of 12);
+  background: $pure-white;
+  box-shadow: $tool-bar-shadow;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+  .shortcut-info {
+    @include type-setting(0);
+    color: $light-grey;
+    float: right;
+  }
+
+  .row {
+    padding: vertical-margin(1) 2em;
+
+    &.one {
+      border-bottom: 1px solid $border-color;
+
+    }
+  }
+
+  .no-measure-selected {
+    display: block;
+    padding-bottom: 1rem;
+  }
+
+  .onboarding-highlight {
+    display: inline-block;
+    padding-top: vertical-margin(1);
+  }
+
+  #undo-menu {
+    .tool-bar-icon {
+      vertical-align: sub;
+
+      .fa {
+        margin-right: .5em;
+      }
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .menu-row {
+    margin: 0;
+    padding: 0;
+  }
+
+  .tool-bar-icon {
+    cursor: pointer;
+    float: left;
+    height: vertical-margin(1.75);
+    margin: 0 .5em;
+    padding-bottom: .5em;
+
+    &.active {
+      border-bottom: 2px  solid $primary-color;
+      padding-bottom: calc(.5em - 2px);
+    }
+
+    &.disabled {
+      border-bottom: 0;
+      cursor: default;
+      display: none;
+    }
+
+    .fa {
+      line-height: vertical-margin(1);
+      vertical-align: top;
+    }
+  }
+
+  button.tool-bar-icon {
+    display: block;
+    float: right;
+    margin-top: .75rem;
+    padding-bottom: inherit;
+  }
+
+  .item {
+    color: $dark-grey;
+    padding: 0 vertical-margin(1);
+    text-transform: uppercase;
+
+    &.active {
+      color: $primary-color;
+      text-decoration: underline;
+    }
+
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .tool-bar-button {
+    float: right;
+    margin-top: 5px;
+  }
+
+  .seperator {
+    display: inline-block;
+    height: vertical-margin(1.75);
+    overflow: hidden;
+    padding-bottom: .5em;
+    margin: 0 1em;
+    width: 1px;
+
+    &::after {
+      background: darken($manatee, 20%);
+      content: '';
+      display: inline-block;
+      height: 100%;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+}

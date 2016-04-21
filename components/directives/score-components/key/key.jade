@@ -1,0 +1,17 @@
+// flat key
+g(ng-if = 'key < 0')
+  image(
+    ng-repeat = 'flat in [-key] | range track by $index'
+    ng-attr-transform = 'translate({{spacing * $index}}, {{spacing * positionFlat[$index]}})'
+    ng-attr-width = '{{3 * spacing}}'
+    ng-attr-height = '{{3 * spacing}}'
+    xlink:href = 'assets/score_svgs/flat.svg')
+
+// sharp key
+g(ng-if = 'key > 0')
+  image(
+    ng-repeat = 'flat in [key] | range track by $index'
+    ng-attr-transform = 'translate({{spacing * $index}}, {{spacing * positionSharp[$index]}})'
+    ng-attr-width = '{{3 * spacing}}'
+    ng-attr-height = '{{3 * spacing}}'
+    xlink:href = 'assets/score_svgs/sharp.svg')

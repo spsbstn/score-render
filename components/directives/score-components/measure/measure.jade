@@ -1,0 +1,17 @@
+g(ng-attr-transform = 'translate(0, 0)')
+  g(bar repeat = 'measure.attributes.repeat' index = 'index')
+  g(ng-repeat = 'note in measure.notes'
+    note-margin = '{{getNoteMargin()}}'
+    index = '$index'
+    note = 'note')
+  // Rectangle to highlight this measure
+  rect.measure-rect(
+    ng-if = 'measureModeActive()'
+    ng-attr-x = '{{-3.0 * spacing}}'
+    ng-attr-y = '{{-spacing}}'
+    ng-click = 'setMeasureActive()'
+    un-click = 'setMeasureInactive()'
+    ng-class = '{"active": isActive && measureModeActive()}'
+    is-active = 'isActive',
+    ng-attr-width = '{{width - 70}}'
+    ng-attr-height = '{{spacing * 8}}')

@@ -1,0 +1,49 @@
+g.note-input(ng-if='!isMeasureMode()')
+  // highlight rectangle
+  rect.highlight#input-area(
+    transform = 'translate(-20, 0)',
+    ng-attr-height = '{{12 * spacing}}'
+    ng-attr-width = '{{40 + 1.5 * spacing}}'
+    fill = 'rgba(0,0,0,0)'
+  )
+  // input a rest
+  g(ng-if = 'input.currentInput.rest')
+    // invisible rect to make the hover zone larger
+    rect.input-rest(
+      transform = 'translate(-20, 0)',
+      ng-attr-height = '{{12 * spacing}}'
+      ng-attr-width = '{{40 + 1.5 * spacing}}'
+      ng-click ='addRest()',
+      fill = 'rgba(0,0,0,0)'
+    )
+    // actual image of the current rest
+    g.rest(ng-attr-transform = 'translate({{.1 * spacing}}, {{spacing * 3.5}})')
+      use(ng-attr-transform = 'scale({{(4.5 * spacing) / 30}}, {{(6.5 * spacing) / 50}})',
+        viewBox="0 0 30 50",
+        xlink:href = '{{ "assets/score_svgs/" + input.currentInput.type + "_rest.svg#note" | svgHref}}')
+
+  // input a normal note
+  g(ng-if = '!input.currentInput.rest' ng-repeat = 'n in [18] | range track by $index')
+    // extra staff lines
+    g(extra-staff = '{{currentNote}}'
+      ng-attr-transform = 'translate(0, {{2 * spacing}})')
+
+    // invisible rect to make the hover zone larger
+    rect.input-note(
+      ng-attr-transform = 'translate(-20, {{getYOffset($index)}})'
+      ng-attr-width = '{{40 + 1.5 * spacing}}'
+      ng-mouseover = 'updateHoverIndex($index)'
+      ng-click ='addNote($index)'
+      ng-attr-height = '{{2 * spacing}}'
+      fill = 'rgba(0,0,0,0)'
+    )
+    // actual image of the current note
+    g.input-note-image(ng-attr-transform = 'translate({{-0.2 * spacing}}, {{getYOffset($index) - 9 * spacing}})')
+      use(ng-attr-transform = 'scale({{(4.5 * spacing) / 30}}, {{(6.5 * spacing) / 50}}) translate(0, 50)'
+      viewBox="0 0 30 50"
+      xlink:href = '{{ "assets/score_svgs/" + input.currentInput.type + "_note.svg#note" | svgHref}}')
+
+  // the marker highlighting the input field
+  polygon.input-marker(
+    ng-attr-transform = 'translate({{-.1 * spacing}}, {{10 * spacing}})',
+    points="4.982,11.052 10.466,3.35 15.991,11.023 15.69,11.422 10.468,4.171 5.286,11.449")

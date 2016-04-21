@@ -1,0 +1,20 @@
+// left repeat-line (show only if left-repeat)
+image(ng-if = 'repeat.left'
+  ng-attr-width = '{{4.5 * spacing}}'
+  ng-attr-height = '{{4 * spacing}}'
+  ng-attr-transform = 'translate({{-(4 * spacing)}}, {{spacing}})'
+  xlink:href = 'assets/score_svgs/bar_repeat_left.svg')
+
+// right repeat-line (show only if right-repeat)
+image(ng-if = 'repeat.right'
+  ng-attr-transform = 'translate({{getOffset() - 70}}, {{spacing}})'
+  ng-attr-width = '{{4.5 * spacing}}'
+  ng-attr-height = '{{4 * spacing}}'
+  xlink:href = 'assets/score_svgs/bar_repeat_right.svg')
+
+// right bar line (show only if NO right-repeat)
+image(ng-if = '!repeat.right'
+  ng-attr-transform = 'translate({{getOffset() - 70}}, {{spacing}})'
+  ng-attr-width = '{{4.5 * spacing}}'
+  ng-attr-height = '{{4 * spacing}}'
+  xlink:href = 'assets/score_svgs/bar.svg')

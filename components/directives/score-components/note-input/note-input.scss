@@ -1,0 +1,43 @@
+.input-note,
+.input-rest {
+  cursor: pointer;
+
+  &:hover ~ .input-note-image,
+  &:hover ~ .rest {
+    opacity: 1;
+  }
+
+
+}
+
+.input-note-image {
+  fill: $primary-color;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.input-marker {
+  stroke: $primary-color;
+  stroke-width: 2px;
+}
+
+.note-input {
+
+  .extra-staff line {
+    stroke: $primary-color;
+  }
+
+  .highlight {
+    fill: rgba($primary-color, .2);
+  }
+
+  .rest {
+    fill: $primary-color;
+    opacity: 0;
+  }
+}

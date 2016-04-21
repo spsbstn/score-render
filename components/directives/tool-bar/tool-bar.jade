@@ -1,0 +1,116 @@
+.tool-bar#tool-bar
+  .row.one
+    span.item#note-menu-icon(translate='', ng-Click = 'toggleMenu(1)' ng-class="{'active': activeMenu === 1 }") Notes
+    span.item#measure-menu-icon(translate='', ng-Click = 'toggleMenu(2)' ng-class="{'active': activeMenu === 2 }") Measures
+    span.shortcut-info(translate) Press '?' to open the shortcut list
+  .row.two(ng-if='activeMenu')
+    .menu-row(ng-if='activeMenu === 1')
+      .onboarding-highlight#note-menu
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", "duration":16, value: "whole"}, {path:"rest", value: false})}',
+          tooltips tooltip-template="{{'Change input type to a whole note. Shortcut: A' | translate}}"
+          ng-click = 'updateConfig({type:"whole", "duration":16, rest: false})',
+          src='assets/images/whole_note.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", "duration":8, value: "half"}, {path:"rest", value: false})}',
+          ng-click = 'updateConfig({type:"half", "duration":8, rest: false})',
+          tooltips tooltip-template="{{'Change input type to a half note. Shortcut: S' | translate}}"
+          src='assets/images/half_note.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", "duration":4, value: "quarter"}, {path:"rest", value: false})}',
+          ng-click = 'updateConfig({type:"quarter", "duration":4, rest: false})',
+          tooltips tooltip-template="{{'Change input type to a quarter note. Shortcut: D' | translate}}"
+          src='assets/images/quarter_note.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", "duration":2, value: "eighth"}, {path:"rest", value: false})}',
+          ng-click = 'updateConfig({type:"eighth", "duration":2, rest: false})',
+          tooltips tooltip-template="{{'Change input type to a eighth note. Shortcut: F' | translate}}"
+          src='assets/images/eighth_note.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", "duration":1, value: "16th"}, {path:"rest", value: false})}',
+          ng-click = 'updateConfig({type:"16th", "duration":1, rest: false})',
+          tooltips tooltip-template="{{'Change input type to a 16th note. Shortcut: G' | translate}}"
+          src='assets/images/16th_note.png')
+        .seperator
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", value: "whole"}, {path:"rest", value: true})}',
+          ng-click = 'updateConfig({type:"whole", rest: true})',
+          tooltips tooltip-template="{{'Change input type to a whole rest' | translate}}"
+          src='assets/images/whole_rest.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", value: "half"}, {path:"rest", value: true})}',
+          ng-click = 'updateConfig({type:"half", rest: true})',
+          tooltips tooltip-template="{{'Change input type to a half rest' | translate}}"
+          src='assets/images/half_rest.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", value: "quarter"}, {path:"rest", value: true})}',
+          ng-click = 'updateConfig({type:"quarter", rest: true})',
+          tooltips tooltip-template="{{'Change input type to a quarter rest'  | translate}}"
+          src='assets/images/quarter_rest.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", value: "eighth"}, {path:"rest", value: true})}',
+          ng-click = 'updateConfig({type:"eighth", rest: true})',
+          tooltips tooltip-template="{{'Change input type to a eighth rest' | translate}}"
+          src='assets/images/eighth_rest.png')
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"type", value: "16th"}, {path:"rest", value: true})}',
+          ng-click = 'updateConfig({type:"16th", rest: true})',
+          tooltips tooltip-template="{{'Change input type to a 16th rest'  | translate}}"
+          src='assets/images/16th_rest.png')
+        .seperator
+        image.tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"dot", value: true})}',
+          ng-click = 'updateConfig({dot : !checkForActiveNote({path:"dot", value: true}) })',
+          tooltips tooltip-template="{{'Change input type to a dotted note' | translate}}"
+          src = 'assets/images/dotted_note.png')
+        .seperator
+        .tool-bar-icon(
+          ng-class='{"active" : checkForActiveNote({path:"unclear", value: true})}',
+          ng-click = 'updateConfig({unclear : !checkForActiveNote({path:"unclear", value: true}) })',
+          tooltips tooltip-template="{{'Mark a symbol as unclear' | translate}}")
+          ng-md-icon(icon = 'translate')
+        .seperator(ng-show='activeNote()')
+        image.tool-bar-icon(
+          ng-show = 'activeNote()'
+          ng-click = 'addNoteBefore()',
+          tooltips tooltip-template="{{'Add a note before the currently selected Note' | translate}}"
+          src = 'assets/images/insert_note_before.png')
+        image.tool-bar-icon(
+          ng-show='activeNote()'
+          ng-click = 'addNoteAfter()',
+          tooltips tooltip-template="{{'Add a note after the currently selected Note' | translate}}"
+          src = 'assets/images/insert_note_after.png')
+      .seperator
+      .onboarding-highlight#undo-menu
+        .tool-bar-icon(ng-click='undo()')
+          i.fa.fa-undo
+          span(translate) Undo
+        .tool-bar-icon(ng-click='redo()')
+          i.fa.fa-undo.fa-rotate-180
+          span(translate) Redo
+      .seperator
+      .tool-bar-icon(ng-click='toggleMute()' tooltips tooltip-template="{{'Mute or unmute sound' | translate}}")
+        ng-md-icon(icon = '{{soundIcon}}')
+      .seperator
+      .tool-bar-icon(ng-click='playAll()' tooltips tooltip-template="{{'Play song' | translate}}")
+        ng-md-icon(icon = '{{playPauseIcon}}')
+      .seperator(ng-show='activeNote()')
+      span.tool-bar-icon(ng-show='activeNote()',
+      tooltips tooltip-template="{{'Delete active note. Shortcut: ⌫' | translate}}",
+      ng-click='removeNote()')
+        i.fa.fa-trash
+      button.tool-bar-button#new-measure-button(ng-click='addMeasure("right")', translate) Next Measure
+
+    .menu-row(ng-if='activeMenu === 2')
+      .onboarding-highlight
+        .measure-icons(ng-if='isAMeasureSelected()')
+          image.tool-bar-icon(
+            ng-class='{"active" : checkForActiveRepeat("left")}',
+            ng-click = 'toggleRepeat("left")',
+            src='assets/images/repeat_left.png')
+          image.tool-bar-icon(
+            ng-class='{"active" : checkForActiveRepeat("right")}',
+            ng-click = 'toggleRepeat("right")',
+            src='assets/images/repeat_right.png')
+        .measure-icons(ng-if='!isAMeasureSelected()')
+            .no-measure-selected(translate) No measure selected. Please select a measure by clicking on it.

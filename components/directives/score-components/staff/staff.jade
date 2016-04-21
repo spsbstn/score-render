@@ -1,0 +1,9 @@
+// generate 5 equally spaced lines
+line(
+  ng-repeat = 'n in [5] | range track by $index'
+  x1 = '0'
+  ng-attr-y1 = '{{$index * spacing}}'
+  ng-attr-x2 = '{{width}}'
+  ng-attr-y2 = '{{$index * spacing}}'
+  stroke-width = '0.975'
+  stroke='black')

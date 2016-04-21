@@ -1,0 +1,19 @@
+
+.measure-rect {
+  fill: rgba($primary-color, .5) !important;
+  opacity: 0;
+
+  &:hover:not(.active) {
+    fill: rgba($light-grey, .5) !important;
+    cursor: pointer;
+    opacity: 1;
+  }
+
+  &.active {
+    opacity: 1;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

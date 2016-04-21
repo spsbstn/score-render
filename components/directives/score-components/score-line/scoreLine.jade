@@ -1,0 +1,14 @@
+g.score-line(ng-attr-transform= 'translate(0, {{spacing * 2}})')
+  g.staff
+    g(staff = ''
+      width = '{{width}}'
+      ng-attr-transform = 'translate(0, {{spacing}})')
+    g(clef = '')
+    g(key = '{{key}}'
+      transform = 'translate(30, 0)')
+    g(time = '{{time}}'
+      ng-attr-transform = 'translate({{preLineWidth}}, 0)')
+  g.measure(ng-attr-transform = 'translate({{preLineWidth + 70}}, 0)')
+    g(measure = 'score.measures[$index]'
+      pre-line-width = 'preLineWidth'
+      width = '{{width}}')

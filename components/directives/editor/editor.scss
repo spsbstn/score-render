@@ -1,0 +1,51 @@
+.editor {
+  padding: vertical-margin(3);
+  width: 100%;
+
+  .scroll-wrapper {
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    height: 80vh;
+    justify-content: space-around;
+    overflow: auto;
+    padding: vertical-margin(2);
+    width: 100%;
+  }
+
+  .play-icon:hover {
+    cursor: pointer;
+  }
+
+  .measure-card {
+    background: lighten($white , 5%);
+    box-shadow: 0 3px 6px rgba($pure-black, .16), 0 3px 6px rgba($pure-black, .23);
+    margin: vertical-margin(2);
+    min-width: 500px;
+    padding: vertical-margin(2);
+    text-align: center;
+    width: 44%;
+
+    h1 {
+      @include type-setting(1);
+
+      margin: vertical-margin(1);
+    }
+
+    .image-wrapper {
+      border: 0;
+      text-align: center;
+      width: 50%;
+    }
+
+    img {
+      height: vertical-margin(4);
+    }
+
+    .measure-input-line {
+      margin: vertical-margin(3) 0;
+      overflow: overlay;
+      width: 80%;
+    }
+  }
+}
